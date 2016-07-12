@@ -1,0 +1,22 @@
+doctype html
+html(ng-app="booktrade")
+  head
+    title= title
+    script(src='/bower_components/angular/angular.min.js')
+    script(src='/bower_components/angular-animate/angular-animate.min.js')
+    script(src='/bower_components/angular-aria/angular-aria.min.js')
+    script(src='/bower_components/angular-messages/angular-messages.min.js')
+    script(src='/bower_components/angular-material/angular-material.min.js')
+    script(src='/bower_components/ngstorage/ngStorage.min.js')
+    script(src='/bower_components/angular-cookies/angular-cookies.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='bower_components/angular-material/angular-material.min.css')
+    
+    script(src='/js/app.js')
+    script(src='/js/controllers/controller.js')
+    script(src='/js/controllers/login.controller.js')
+    script(src='/js/services/login.service.js')
+    script(src='/js/directives/nav-toolbar/nav-toolbar.directive.js')
+  body(class="main-wrapper",ng-controller="MainController")
+    div(layout="column", style="height: 100%;")
+      block content

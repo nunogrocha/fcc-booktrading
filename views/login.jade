@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  md-content(flex)
+    nav-toolbar
+    div(layout="row", ng-controller="LoginController as main")
+      div(flex)
+      div(flex)
+        md-card(class="login-box")
+          md-card-title
+            md-card-title-text
+              span(class="md-headline", style="text-align:center;")
+                | Book Trading Club
+          md-card-body(layout-padding)
+            form(name="loginForm")
+              md-input-container(class="md-block")
+                label Username
+                input(required, name="Username", ng-model="main.username")
+              md-input-container(class="md-block")
+                label Password
+                input(required, name="Password", ng-model="main.password")
+            p(ng-show="main.loginError", style="text-align:center;color:red") Login Failed
+          div(layout="row")     
+            md-button(ng-click="main.register()", class=["md-raised", "md-primary"], flex)
+              | Register
+            md-button(ng-click="main.login()", class=["md-raised", "md-primary"], flex)
+              | Login
+      div(flex)

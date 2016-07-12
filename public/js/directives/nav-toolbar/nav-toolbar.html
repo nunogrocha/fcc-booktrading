@@ -1,0 +1,31 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>Book Trading Club</h2>
+    <span flex></span>
+    <a href="/registerparkadmin">
+      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="Park Admin" style="font-weight: 600;">
+        <ng-md-icon icon="add" style="fill: rgba(255,255,255,0.85)" size="22"></ng-md-icon>  Park Manager
+      </md-button>
+    </a>
+    <a href="/registerpark">
+      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="Park Admin" style="font-weight: 600;">
+        <ng-md-icon icon="add" style="fill: rgba(255,255,255,0.85)" size="22"></ng-md-icon>  Park
+      </md-button>
+    </a>
+    <md-menu md-position-mode="target-right target" >
+      <md-button ng-show="loggedin" class="md-icon-button" aria-label="More">
+        <ng-md-icon icon="more_vert" style="fill: rgba(255,255,255,0.85)" size="24" ng-click="$mdOpenMenu($event)"></ng-md-icon> 
+      </md-button>
+      <md-menu-content width="3" style="background-color: #fff !important">
+        <md-menu-item>
+          <md-button >
+            <div layout="row" flex ng-click="logout()">
+              <p flex>Logout</p>
+              <ng-md-icon md-menu-align-target icon="logout" style="fill: rgba(0,0,0,0.8)" size="20"></ng-md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>
