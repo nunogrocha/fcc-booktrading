@@ -1,0 +1,23 @@
+<md-subheader class="md-no-sticky">Profile Settings</md-subheader>
+<md-divider ></md-divider>
+<form name="profileSettingsForm" class="form-container">
+  
+   <md-input-container class="md-block" flex>
+    <label>Full Name</label>
+    <input ng-model="profile.fullName">
+  </md-input-container>
+  
+  <md-input-container class="md-block" flex>
+    <label>City</label>
+    <input ng-model="profile.city">
+  </md-input-container>
+  
+  <md-input-container class="md-block" flex>
+    <label>State</label>
+    <input ng-model="profile.state">
+  </md-input-container>
+  
+  <div layout="row" layout-align="end center">
+    <md-button ng-click="submitForm()" class="md-raised md-primary">{{buttonText}}</md-button>
+  </div>
+</form>

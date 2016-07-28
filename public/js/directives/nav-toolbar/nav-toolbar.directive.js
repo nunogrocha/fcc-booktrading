@@ -1,7 +1,6 @@
 angular
   .module('booktrade')
   .directive('navToolbar', ['$cookies', function($cookies){
-
     return {
       restrict: 'E',
       templateUrl: 'js/directives/nav-toolbar/nav-toolbar.html',

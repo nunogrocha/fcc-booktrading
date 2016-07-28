@@ -13,6 +13,18 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  fullName: {
+    type: String,
+    default: ""
+  },
+  city: {
+    type: String,
+    default: ""
+  },
+  state: {
+    type: String,
+    default: ""
+  },
   createdAt: { 
     type: Date, 
     default: Date.now 

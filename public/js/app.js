@@ -6,33 +6,11 @@
       'ngAnimate',
       'ngMaterial',
       'ngStorage',
-      'ngCookies'
+      'ngCookies',
+      'ngMdIcons'
     ])
-    .config(config);
-
-  // safe dependency injection
-  // this prevents minification issues
-  config.$inject = ['$mdThemingProvider'/*, '$httpProvider', '$routeProvider', '$locationProvider'*/];
-
-  /**
-   * App routing
-   *
-   * You can leave it here in the config section or take it out
-   * into separate file
-   * 
-   */
-  function config($mdThemingProvider/*, $httpProvider, $routeProvider, $locationProvider*/) {
-
-    //$httpProvider.responseInterceptors.push('httpInterceptor');
-/*
-    $routeProvider
-        .when('/', { templateUrl: 'views/dashboard.html', controller: 'dashboard' })
-        .when('/login', { templateUrl: 'views/auth.html', controller: 'auth' })
-        .otherwise({ redirectTo: '/' });
-*/
-    //$locationProvider.html5Mode(true);
-
-    var customPrimary = {
+    .config(function($mdThemingProvider){
+        var customPrimary = {
         '50': '#b4b6ff',
         '100': '#9b9cff',
         '200': '#8183ff',
@@ -122,8 +100,7 @@
        .accentPalette('customAccent')
        .warnPalette('customWarn')
        .backgroundPalette('customBackground')
-    
-  }
+    });
 
   angular
     .module('booktrade')

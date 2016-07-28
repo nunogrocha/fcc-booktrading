@@ -2,14 +2,14 @@
   <div class="md-toolbar-tools">
     <h2>Book Trading Club</h2>
     <span flex></span>
-    <a href="/registerparkadmin">
-      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="Park Admin" style="font-weight: 600;">
-        <ng-md-icon icon="add" style="fill: rgba(255,255,255,0.85)" size="22"></ng-md-icon>  Park Manager
+    <a href="/">
+      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="All Books" style="font-weight: 600;">
+        All Books
       </md-button>
     </a>
-    <a href="/registerpark">
-      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="Park Admin" style="font-weight: 600;">
-        <ng-md-icon icon="add" style="fill: rgba(255,255,255,0.85)" size="22"></ng-md-icon>  Park
+    <a href="/mybooks">
+      <md-button ng-show="loggedin" class="md-raised md-primary md-hue-2" aria-label="My Books" style="font-weight: 600;">
+        My Books
       </md-button>
     </a>
     <md-menu md-position-mode="target-right target" >
@@ -17,6 +17,16 @@
         <ng-md-icon icon="more_vert" style="fill: rgba(255,255,255,0.85)" size="24" ng-click="$mdOpenMenu($event)"></ng-md-icon> 
       </md-button>
       <md-menu-content width="3" style="background-color: #fff !important">
+        <md-menu-item>
+          <md-button>
+            <a class="clear-href" href="/profile">
+            <div layout="row" flex>
+              <p flex>Profile</p>
+              <ng-md-icon md-menu-align-target icon="account_circle" style="fill: rgba(0,0,0,0.8)" size="20"></ng-md-icon>
+            </div>
+            </a>
+          </md-button>
+        </md-menu-item>
         <md-menu-item>
           <md-button >
             <div layout="row" flex ng-click="logout()">

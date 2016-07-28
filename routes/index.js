@@ -10,24 +10,36 @@ var config = require('./../config/main');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/',
+router.get('/', passport.authenticate('jwt', { session: false, failureRedirect: '/login' }),
   function(req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.cookies.token;
-    if (token) {
-      res.render('index', { title: 'Book Trade Club' });
-    } else {
-      res.render('login', { title: 'Book Trade Club' });
-    }
+    res.render('index', { title: 'Book Trade Club' });
 });
 
 router.get('/login', 
   function(req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.cookies.token;
-    if (token) {
-      res.render('index', { title: 'Book Trade Club' });
+    res.render('login', { title: 'Book Trade Club' });
+});
+
+router.get('/profile', passport.authenticate('jwt', { session: false, failureRedirect: '/login' }),
+  function(req, res, next) {
+      res.render('profile', { title: 'Book Trade Club' });
+});
+
+router.get('/mybooks', passport.authenticate('jwt', { session: false, failureRedirect: '/login' }), 
+  function(req, res, next) {
+    var output = [];
+    var decoded = jwt.verify(req.cookies.token.substring(4), config.secret);
+
+    if (decoded._doc._id) {
+      User.findById(decoded._doc._id)
+      .populate('_books')
+      .exec(function(err, user){
+          res.render('mybooks', { title: 'Book Trade Club', books: JSON.stringify(user._books) });
+      })
     } else {
-      res.render('login', { title: 'Book Trade Club' });
+      res.render('mybooks', { title: 'Book Trade Club', books: JSON.stringify(output) });
     }
+    
 });
 
 module.exports = router;

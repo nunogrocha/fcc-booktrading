@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  md-content(flex)
+    nav-toolbar
+    div(layout="row", flex, class="layout-height")
+      nav-sidebar
+      md-content(flex)
+        div(layout="column", layout-fill)
+          md-content(flex)
+            edit-profile-settings
