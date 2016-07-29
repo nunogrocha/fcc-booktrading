@@ -1,12 +1,11 @@
 var mongoose = require('mongoose');
+var User = require('./user');
 
 var BookSchema = new mongoose.Schema({
   title:{
     type: String
   },
-  owner:{
-    type: String
-  },
+  _owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   cover:{
     type: String
   },

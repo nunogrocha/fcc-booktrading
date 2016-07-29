@@ -9,7 +9,7 @@ block content
         md-card(class="login-box")
           md-card-title
             md-card-title-text
-              span(class="md-headline", style="text-align:center;")
+              span(class=["md-headline","center-text"])
                 | Book Trading Club
           md-card-body(layout-padding)
             form(name="loginForm")
@@ -25,4 +25,6 @@ block content
               | Register
             md-button(ng-click="main.login()", class=["md-raised", "md-primary"], flex)
               | Login
+        p(class="center-text")
+          a(href="https://github.com/nunogrocha") @nunogrocha
       div(flex)

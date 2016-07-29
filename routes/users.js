@@ -5,6 +5,23 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var User = require('./../models/user');
 var config = require('./../config/main');
+var Trade = require('./../models/trade');
+
+// Get users requests
+router.get('/requests', passport.authenticate('jwt', { session: false }), function(req, res) {
+  Trade.find({
+    $or: [
+        { _owner: req.user._id },
+        { _target: req.user._id }
+    ]
+  }, function(err, trades) {
+    if (err){
+      return next(err);
+    } else {
+      res.json({ success: true, message: 'OK', cod: 200, item: trades });
+    }
+  });  
+});
 
 // Register new users
 router.post('/register', function(req, res) {
@@ -18,12 +35,17 @@ router.post('/register', function(req, res) {
 
     newUser.save(function(err, user) {
       if (err) {
-        throw err;
+        res.send({ success: false, message: 'Authentication failed.' });
+      } else {
+        if (user) {
+          var token = jwt.sign(user, config.secret, {
+            expiresIn: config.tokenexpire 
+          });
+          res.json({ success: true, token: 'JWT ' + token, message: 'OK', cod: 200 });
+        } else {
+          res.send({ success: false, message: 'Authentication failed.' });
+        } 
       }
-      var token = jwt.sign(user, config.secret, {
-          expiresIn: config.tokenexpire 
-      });
-      res.json({ success: true, token: token, message: 'OK', cod: 200 });
     });
   }
 });

@@ -1,0 +1,24 @@
+<md-subheader class="md-no-sticky">All Books</md-subheader>
+<md-divider ></md-divider>
+
+<div class="form-container-small" layout="column">
+
+  <div flex>
+    <md-grid-list 
+      md-cols="2" md-cols-sm="3" md-cols-md="5" md-cols-gt-md="6"
+      md-row-height-gt-md="4:3" md-row-height="4:3"
+      md-gutter="8px" md-gutter-gt-sm="4px" >
+      <md-grid-tile ng-repeat="book in books"
+        md-rowspan="2"
+        md-colspan="1" >
+        <md-card>
+          <img ng-src="{{book.cover}}" class="md-card-image" style="height:300px;width:200px;" alt="Washed Out">
+          <div>
+            <md-button class="md-accent btn-block" ng-click="requestBook(book)">Request Trade</md-button>
+          </div>
+        </md-card>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+  
+</div>

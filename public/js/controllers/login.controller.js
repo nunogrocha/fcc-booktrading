@@ -1,6 +1,6 @@
 angular
   .module('booktrade')
-  .controller('LoginController', ['LoginService','$http','$localStorage','$location', function(LoginService,$http,$localStorage,$location) {
+  .controller('LoginController', ['LoginService','$http','$localStorage','$location','$cookies', function(LoginService,$http,$localStorage,$location,$cookies) {
 
     var self = this;
      
@@ -8,8 +8,8 @@ angular
       var token = res.data ? res.data.token : null;
       if(token) { 
         self.loginError = false;
-        $localStorage.JWT = token
-        $http.defaults.headers.common['Authorization'] = token;
+        $cookies.put('token', token);
+        location.assign("/");
       } else {
         self.loginError = true;
       }

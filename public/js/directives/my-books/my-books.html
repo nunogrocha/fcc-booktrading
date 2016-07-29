@@ -5,34 +5,48 @@
 
   <div flex="60">
     <div layout="column">
-      <md-input-container>
+      <md-input-container flex>
         <label>Add Book</label>
         <input ng-model="searchTitle">
       </md-input-container>
-      <div layout="row">
+      <div layout="row" flex>
         <div flex>
-          <md-button class="md-raised btn-block">Your trade requests ({{profile.outstanding}} outstanding)</md-button>
+          <md-button ng-click="toggleMyTradingRequests()" class="md-raised btn-block">Your trade requests ({{myTradingRequests.length}} outstanding)</md-button>
         </div>
         <div flex>
-          <md-button class="md-raised btn-block">Trade requests for you ({{profile.unapproved}} unapproved)</md-button>
+          <md-button ng-click="toggleInboundTradingRequests()" class="md-raised btn-block">Trade requests for you ({{inboundTradingRequests.length}} unapproved)</md-button>
         </div>
       </div>
-      <md-grid-list 
+      
+      <md-list ng-if="showMyTradingRequests">
+        <md-subheader class="md-no-sticky">My Trading Requests</md-subheader>
+        <md-list-item ng-repeat="book in myTradingRequests " class="secondary-button-padding" >
+          <p>{{book.bookTitle}}</p>
+          <md-button class="md-secondary" ng-click="removeTrade(book, $index)">Remove</md-button>
+        </md-list-item>
+      </md-list>
+      
+      <md-list ng-if="showInboundTradingRequests">
+        <md-subheader class="md-no-sticky">Trading Requests For You</md-subheader>
+        <md-list-item ng-repeat="book in inboundTradingRequests " class="secondary-button-padding" >
+          <p>{{book.bookTitle}}</p>
+          <md-button class="md-secondary" ng-click="aproveTrade(book, $index)">Aprove</md-button>
+        </md-list-item>
+      </md-list>
+      
+      <md-progress-circular ng-show="!loadComplete" class="md-accent spinner" md-diameter="80"></md-progress-circular>
+      <md-grid-list flex
         md-cols="4" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4"
-        md-row-height-gt-md="1:1" md-row-height="1:1"
-        md-gutter="8px" md-gutter-gt-sm="4px" >
+        md-row-height="1:1"
+        md-gutter="8px" md-gutter-gt-sm="4px" 
+        class="my-books-grid">
         <md-grid-tile ng-repeat="book in books"
           md-rowspan="2"
           md-colspan="1" >
           <md-card>
-            <md-card-header>
-              <md-card-header-text>
-                <span class="md-title center-text">{{book.title}}</span>
-              </md-card-header-text>
-            </md-card-header>
             <img ng-src="{{book.cover}}" class="md-card-image" style="height:300px;width:200px;" alt="Washed Out">
             <div>
-              <md-button class="md-warn btn-block">Delete</md-button>
+              <md-button class="md-accent btn-block" ng-click="removeBook(book._id)">Delete</md-button>
             </div>
           </md-card>
         </md-grid-tile>

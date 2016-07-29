@@ -5,7 +5,6 @@ var Book = require('./book');
 var UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    lowercase: true,
     unique: true,
     required: true
   },

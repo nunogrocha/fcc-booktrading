@@ -7,7 +7,8 @@
       'ngMaterial',
       'ngStorage',
       'ngCookies',
-      'ngMdIcons'
+      'ngMdIcons',
+      'angular-jwt'
     ])
     .config(function($mdThemingProvider){
         var customPrimary = {

@@ -6,4 +6,5 @@ block content
     div(layout="row", flex, class="layout-height")
       nav-sidebar
       md-content(flex)
-        p kek
+        -var b = books
+        all-books(books="#{b}")
